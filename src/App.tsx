@@ -8,6 +8,7 @@ import { AuthProvider } from "@/hooks/useAuth";
 import { ThemeProvider } from "@/hooks/useTheme";
 import Index from "./pages/Index";
 import AuthPage from "./pages/auth/index";
+import AgentSidePanel from "./pages/AgentSidePanel";
 import NotFound from "./pages/NotFound";
 
 const App = () => {
@@ -25,6 +26,7 @@ const App = () => {
               <Routes>
                 <Route path="/" element={<Index />} />
                 <Route path="/auth" element={<AuthPage />} />
+                <Route path="/agent_sidepanel" element={<AgentSidePanel />} />
                 {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                 <Route path="*" element={<NotFound />} />
               </Routes>

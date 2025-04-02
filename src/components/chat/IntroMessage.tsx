@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Card } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
@@ -23,10 +22,14 @@ export const IntroMessage = () => {
     <div className="flex justify-start mb-4 w-full">
       <Card className="max-w-[85%] p-5 shadow-md border-l-4 border-l-primary">
         <div className="flex items-center gap-3 mb-5">
-          <Avatar className="h-12 w-12 bg-primary/10 ring-2 ring-primary/20">
-            <AvatarImage src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=150&q=80" alt="Robot Avatar" />
-            <AvatarFallback className="text-primary font-semibold">M</AvatarFallback>
-          </Avatar>
+          <div className="h-10 w-10 rounded-full ring-3 ring-primary flex items-center justify-center bg-primary/10">
+            <div className="relative w-6 h-6">
+              {/* Geometric logo - overlapping shapes */}
+              <div className="absolute top-0 left-0 w-4 h-4 bg-primary/80 rounded-sm transform rotate-45"></div>
+              <div className="absolute bottom-0 right-0 w-4 h-4 bg-primary/90 rounded-full"></div>
+              <div className="absolute top-1/2 left-1/2 w-2 h-2 bg-white transform -translate-x-1/2 -translate-y-1/2 rotate-12"></div>
+            </div>
+          </div>
           <p className="text-xl font-semibold text-primary">I am Macro, your AI assistant</p>
         </div>
         
@@ -38,31 +41,16 @@ export const IntroMessage = () => {
             <li className="flex items-center gap-3">
               <span className="text-lg">Using websites</span>
               <div className="flex items-center gap-2">
-                <Avatar className="h-7 w-7">
-                  <AvatarImage src="https://www.salesforce.com/favicon.ico" alt="Salesforce" />
-                  <AvatarFallback>SF</AvatarFallback>
-                </Avatar>
-                <Avatar className="h-7 w-7">
-                  <AvatarImage src="https://static.licdn.com/sc/h/akt4ae504epesldzj74dzred8" alt="LinkedIn" />
-                  <AvatarFallback>LI</AvatarFallback>
-                </Avatar>
-                <Twitter size={22} />
-                <Facebook size={22} />
                 <Chrome size={22} />
                 <Github size={22} />
+                <Twitter size={22} />
+                <Facebook size={22} />
+                <Linkedin size={22} />
               </div>
             </li>
             <li className="flex items-center gap-3">
               <span className="text-lg">Working with spreadsheets</span>
               <div className="flex items-center gap-2">
-                <Avatar className="h-7 w-7">
-                  <AvatarImage src="https://ssl.gstatic.com/docs/doclist/images/mediatype/icon_1_spreadsheet_x16.png" alt="Google Sheets" />
-                  <AvatarFallback>GS</AvatarFallback>
-                </Avatar>
-                <Avatar className="h-7 w-7">
-                  <AvatarImage src="https://c.s-microsoft.com/favicon.ico?v2" alt="Excel" />
-                  <AvatarFallback>EX</AvatarFallback>
-                </Avatar>
                 <FileSpreadsheet size={22} />
               </div>
             </li>

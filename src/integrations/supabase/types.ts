@@ -12,7 +12,7 @@ export type Database = {
       browser_events: {
         Row: {
           chat_id: string
-          coderun_event_id: string
+          coderun_event_id: string | null
           created_at: string
           data: Json
           function_name: string | null
@@ -22,7 +22,7 @@ export type Database = {
         }
         Insert: {
           chat_id: string
-          coderun_event_id: string
+          coderun_event_id?: string | null
           created_at?: string
           data: Json
           function_name?: string | null
@@ -32,7 +32,7 @@ export type Database = {
         }
         Update: {
           chat_id?: string
-          coderun_event_id?: string
+          coderun_event_id?: string | null
           created_at?: string
           data?: Json
           function_name?: string | null
@@ -46,13 +46,6 @@ export type Database = {
             columns: ["chat_id"]
             isOneToOne: false
             referencedRelation: "chats"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "browser_events_coderun_event_id_fkey"
-            columns: ["coderun_event_id"]
-            isOneToOne: false
-            referencedRelation: "coderun_events"
             referencedColumns: ["id"]
           },
           {

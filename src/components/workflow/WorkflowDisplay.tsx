@@ -1,3 +1,4 @@
+
 import { useState, useEffect, } from "react";
 import { WorkflowStep } from "./WorkflowStep";
 import { BrowserEvent } from "@/types";
@@ -11,6 +12,7 @@ interface WorkflowDisplayProps {
   compact?: boolean;
   userInputs?: Record<string, any>;
   setUserInputs?: (userInputs: Record<string, any>) => void;
+  autoActivateSteps?: boolean; // Add this new prop
 }
 
 export const WorkflowDisplay = ({ 
@@ -20,6 +22,7 @@ export const WorkflowDisplay = ({
   compact = false, 
   userInputs,
   setUserInputs,
+  autoActivateSteps = false, // Default it to false
 }: WorkflowDisplayProps) => {
 
   useEffect(() => {
@@ -59,7 +62,7 @@ export const WorkflowDisplay = ({
           <WorkflowStep
             step={node.step}
             browserEvents={getBrowserEventsForStep(node.step)}
-            autoOpen={node.step.active === true}
+            autoOpen={node.step.active === true || autoActivateSteps}
             hasChildren={false}
             isUserInputStep={isUserInputStep}
             userInputs={isUserInputStep ? userInputs : undefined}
@@ -84,7 +87,7 @@ export const WorkflowDisplay = ({
           <WorkflowStep
             step={node.step}
             browserEvents={getBrowserEventsForStep(node.step)}
-            autoOpen={node.step.active === true}
+            autoOpen={node.step.active === true || autoActivateSteps}
             hasChildren={true}
             isUserInputStep={isUserInputStep}
             userInputs={isUserInputStep ? userInputs : undefined}

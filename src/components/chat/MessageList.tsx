@@ -408,7 +408,7 @@ const CodeRunMessageBubble = ({ message, browserEvents }: {
                 <WorkflowDisplay 
                   steps={processStepsWithBrowserEvents(message.steps)}
                   compact={true}
-                  autoActivateSteps={true}
+                  autoActivateSteps={true} // Now this prop is defined in the interface
                 />
               </div>
             )}

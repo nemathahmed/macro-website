@@ -56,7 +56,7 @@ const Index = () => {
       );
       handleSelectChat(sortedChats[0].id);
     }
-  }, [chats, chatsLoading, chatIdFromUrl, navigate]);
+  }, [chats, chatsLoading]);
 
   if (loading) {
     return (
@@ -76,7 +76,7 @@ const Index = () => {
         <Sidebar collapsible="offcanvas">
           <div className="flex flex-col h-full">
             <div className="p-4 border-b flex items-center justify-between">
-              <h1 className="text-lg font-bold">Chat App</h1>
+              <h1 className="text-lg font-bold">Macro AI</h1>
               <div className="flex items-center space-x-2">
                 <ThemeToggle />
                 <Button variant="ghost" size="icon" onClick={signOut}>

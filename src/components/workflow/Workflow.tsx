@@ -1,3 +1,4 @@
+
 import { useState, useEffect, useRef } from 'react';
 import { Play, Loader2 } from 'lucide-react';
 import { WorkflowDisplay } from './WorkflowDisplay';
@@ -13,6 +14,7 @@ import { useSelectedChat } from '@/hooks/useChats';
 
 interface WorkflowProps {
   steps?: any[];
+  initialSteps?: any[]; // Added initialSteps to the interface
   chatId?: string;
   compact?: boolean;
   className?: string;
@@ -48,7 +50,7 @@ const StatusBadge = ({ status }: { status: CodeRewritingStatus }) => {
 };
 
 export const Workflow = ({ 
- 
+  initialSteps = [], // Add initialSteps prop with default value
   steps= [],
   chatId,
   compact = false,
@@ -59,7 +61,7 @@ export const Workflow = ({
     console.log('RENDER - Workflow component rendered');
   });
   // Use either initialSteps or steps prop, prioritizing steps if both are provided
-  const [workflowSteps, setWorkflowSteps] = useState<any[]>(steps);
+  const [workflowSteps, setWorkflowSteps] = useState<any[]>(steps.length > 0 ? steps : initialSteps);
   const [browserEvents, setBrowserEvents] = useState<Record<string, any[]>>({});
   
  
@@ -97,9 +99,16 @@ export const Workflow = ({
   useEffect(() => {
     let stepsToUse: any[] = [];
     
-
-    // Second priority: use steps from the selected chat if available
-    if (selectedChat?.steps && Array.isArray(selectedChat.steps)) {
+    // First priority: use explicitly passed steps
+    if (steps && steps.length > 0) {
+      stepsToUse = steps;
+    }
+    // Second priority: use initialSteps
+    else if (initialSteps && initialSteps.length > 0) {
+      stepsToUse = initialSteps;
+    }
+    // Third priority: use steps from the selected chat if available
+    else if (selectedChat?.steps && Array.isArray(selectedChat.steps)) {
       stepsToUse = selectedChat.steps;
     }
       
@@ -115,7 +124,7 @@ export const Workflow = ({
         }
       }
     }
-  }, [selectedChat]);
+  }, [selectedChat, steps, initialSteps]);
   
   const handleRunWorkflow = async () => {
     console.log('handleRunWorkflow - userInputs', userInputs);
@@ -171,7 +180,6 @@ export const Workflow = ({
                 compact={compact}
                 userInputs={userInputs}
                 setUserInputs={setUserInputs}
-      
               />
             )}
           </div>
